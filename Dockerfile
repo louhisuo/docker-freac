@@ -1,3 +1,4 @@
+
 # Using linuxserver.io baseimage
 FROM lsiobase/guacgui
 
@@ -9,7 +10,9 @@ ENV FREAC_ARCH=x86_64 \
     
 
 # Install a missing fre:ac dependency (clean-up needed, as only single library needed from this bundle?)
-RUN apt-get update && apt-get -y install libgtk-3-0
+RUN apt-get update && apt-get -y install libgtk-3-0 && \
+# Add Japanese language support (github issue #1)
+    apt-get install -y fonts-takao fonts-takao-mincho
 
 
 # Install fre:ac
@@ -23,8 +26,8 @@ RUN curl -SLO https://github.com/enzo1982/freac/releases/download/v${FREAC_VER}/
 
 
 # Ports and volumes
-# Clientless remote desktop
-EXPOSE 8080
+# Expose ports for remote desktop
+EXPOSE 3389 8080
 # Configuration and cache
 VOLUME /root
 # Media directory
