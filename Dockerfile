@@ -5,7 +5,7 @@ FROM lsiobase/guacgui
 
 # Build environment
 ENV FREAC_ARCH=x86_64 \
-    FREAC_VER=1.1-rc1 \
+    FREAC_VER=1.1-rc2 \
     FREAC_HOME=/app/freac
     
 
@@ -26,7 +26,7 @@ RUN curl -SLO https://github.com/enzo1982/freac/releases/download/v${FREAC_VER}/
 
 
 # Ports and volumes
-# Expose ports for remote desktop
+# Expose both ports to get 'DISPLAY' to work for remote desktop
 EXPOSE 3389 8080
 # Configuration and cache
 VOLUME /root
@@ -39,5 +39,4 @@ ENV PATH ${FREAC_HOME}:$PATH
 ENV LD_LIBRARY_PATH ${FREAC_HOME}:$LD_LIBRARY_PATH
 ENV DISPLAY :1
 
-CMD ${FREAC_HOME}/freac
-# ENTRYPOINT [ "freac" ]
+CMD freac
