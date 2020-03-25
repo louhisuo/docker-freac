@@ -1,1 +1,2 @@
 # Docker fre:ac
+While waiting for more comprehensive documentation for this container, if you try this out you need to map the both ports 3389 and 8080 to get 'DISPLAY' env. variable working and container launched successfully (at least that was needed for me). In addition you need to map your <internal-media-folder> with against '/storage' folder inside a container to access media files. Ripping from optical media is something I plan to look in future.
